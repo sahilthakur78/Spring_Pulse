@@ -4,21 +4,17 @@ const SpringData = require("../../models/villager/SpringData");
 //used to get all the springs
 exports.getMySprings = async (req, res) => {
 
-  try {
+ try {
 
-    const springs = await spring.find({ createdBy: req.user.id });
+  const springs = await spring.find({ createdBy: req.user.id });
 
-    if (springs.length === 0) {
-      return res.status(404).json({ message: "No springs found" });
-    }
+  res.json(springs);
 
-    res.json(springs);
+ } catch (error) {
 
-  } catch (error) {
+  res.status(500).json({ error: error.message });
 
-    res.status(500).json({ error: error.message });
-
-  }
+ }
 
 };
 
