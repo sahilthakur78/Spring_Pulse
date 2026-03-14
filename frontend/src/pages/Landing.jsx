@@ -48,7 +48,6 @@ function Landing() {
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-gradient-to-b from-cyan-900 via-blue-800 to-teal-900 flex items-center justify-center">
 
-      {/* MAIN HERO */}
       <div
         ref={heroRef}
         className={`relative z-10 text-center px-6 max-w-7xl mx-auto transition-all duration-1000 ${
@@ -56,7 +55,6 @@ function Landing() {
         }`}
       >
 
-        {/* TITLE */}
         <h1 className="text-6xl font-black text-teal-200 mb-6">
           SpringPulse हिमाचल
         </h1>
@@ -69,7 +67,7 @@ function Landing() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
           {/* VILLAGER */}
-          <Link to="/login/villager">
+          <Link to="/villager/login">
             <div className="group relative bg-white/10 backdrop-blur-md border border-teal-300/20 rounded-2xl p-6 hover:scale-105 hover:border-teal-300/40 transition-all duration-300">
 
               <div className="text-5xl mb-3 animate-float-water">👨‍🌾</div>
@@ -86,13 +84,13 @@ function Landing() {
           </Link>
 
           {/* NGO */}
-          <Link to="/login/ngo">
+          <Link to="/ngo/login">
             <div className="group relative bg-white/10 backdrop-blur-md border border-teal-300/20 rounded-2xl p-6 hover:scale-105 hover:border-teal-300/40 transition-all duration-300">
 
               <div className="text-5xl mb-3 animate-float-water">🌿</div>
 
               <h3 className="text-xl font-semibold text-white mb-2">
-                Register as NGO
+                Login as NGO
               </h3>
 
               <p className="text-sm text-teal-200">
@@ -103,13 +101,13 @@ function Landing() {
           </Link>
 
           {/* OFFICER */}
-          <Link to="/login/officer">
+          <Link to="/officer/login">
             <div className="group relative bg-white/10 backdrop-blur-md border border-teal-300/20 rounded-2xl p-6 hover:scale-105 hover:border-teal-300/40 transition-all duration-300">
 
               <div className="text-5xl mb-3 animate-float-water">🏛</div>
 
               <h3 className="text-xl font-semibold text-white mb-2">
-                Register as Officer
+                Login as Officer
               </h3>
 
               <p className="text-sm text-teal-200">
@@ -120,13 +118,13 @@ function Landing() {
           </Link>
 
           {/* ADMIN */}
-          <Link to="/login/admin">
+          <Link to="/admin/login">
             <div className="group relative bg-white/10 backdrop-blur-md border border-teal-300/20 rounded-2xl p-6 hover:scale-105 hover:border-teal-300/40 transition-all duration-300">
 
               <div className="text-5xl mb-3 animate-float-water">🛡</div>
 
               <h3 className="text-xl font-semibold text-white mb-2">
-                Register as Admin
+                Login as Admin
               </h3>
 
               <p className="text-sm text-teal-200">
@@ -135,35 +133,6 @@ function Landing() {
 
             </div>
           </Link>
-
-        </div>
-
-        {/* STATS */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
-
-          <div className="bg-white/10 p-4 rounded-xl">
-            <div className="text-3xl">💧</div>
-            <div className="text-white font-bold text-xl">3247</div>
-            <div className="text-teal-200 text-sm">Active Springs</div>
-          </div>
-
-          <div className="bg-white/10 p-4 rounded-xl">
-            <div className="text-3xl">🗺</div>
-            <div className="text-white font-bold text-xl">12</div>
-            <div className="text-teal-200 text-sm">Districts</div>
-          </div>
-
-          <div className="bg-white/10 p-4 rounded-xl">
-            <div className="text-3xl">👥</div>
-            <div className="text-white font-bold text-xl">2.5M</div>
-            <div className="text-teal-200 text-sm">People</div>
-          </div>
-
-          <div className="bg-white/10 p-4 rounded-xl">
-            <div className="text-3xl">✨</div>
-            <div className="text-white font-bold text-xl">98%</div>
-            <div className="text-teal-200 text-sm">Purity</div>
-          </div>
 
         </div>
 

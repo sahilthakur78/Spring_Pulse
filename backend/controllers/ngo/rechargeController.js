@@ -53,3 +53,22 @@ exports.updateWorkStatus = async (req, res) => {
   }
 
 };
+
+// Get all NGO works
+exports.getNgoWorks = async (req, res) => {
+
+  try {
+
+    const works = await RechargeWork.find({
+      ngoId: req.user.id
+    }).populate("springId")
+
+    res.json(works)
+
+  } catch (error) {
+
+    res.status(500).json({ error: error.message })
+
+  }
+
+}

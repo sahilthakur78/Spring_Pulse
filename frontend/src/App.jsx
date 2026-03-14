@@ -2,17 +2,24 @@ import React from "react"
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom"
 
 import Landing from "./pages/Landing"
-import Login from "./pages/villager/VilagerLogin"
-import Register from "./pages/villager/VillagerRegister"
 
+// Villager
+import VillagerLogin from "./pages/villager/VilagerLogin"
+import VillagerRegister from "./pages/villager/VillagerRegister"
 import Dashboard from "./pages/villager/Dashboard"
 import AddSpring from "./pages/villager/AddSpring"
 import SpringDetail from "./pages/villager/SpringDetail"
 import AddWeeklyData from "./pages/villager/AddWeeklyData"
 import EditSpring from "./pages/villager/EditSpring"
 
-import VillagerLogin from "./pages/villager/VilagerLogin"
+// NGO
+import NgoLogin from "./pages/ngo/NgoLogin"
+import NgoRegister from "./pages/ngo/NgoRegister"
+import NgoDashboard from "./pages/ngo/NgoDashboard"
+import AddRechargeWork from "./pages/ngo/AddRechargeWork"
+import NgoWorks from "./pages/ngo/NgoWorks"
 
+// Components
 import Navbar from "./components/Navbar"
 import PrivateRoute from "./utils/PrivateRoute"
 
@@ -22,12 +29,10 @@ function Layout(){
 
  const hideNavbar =
   location.pathname === "/" ||
-  location.pathname === "/login" ||
-  location.pathname === "/register" ||
-  location.pathname === "/login/villager" ||
-  location.pathname === "/login/ngo" ||
-  location.pathname === "/login/officer" ||
-  location.pathname === "/login/admin"
+  location.pathname === "/villager/login" ||
+  location.pathname === "/villager/register" ||
+  location.pathname === "/ngo/login" ||
+  location.pathname === "/ngo/register"
 
  return(
   <>
@@ -38,44 +43,95 @@ function Layout(){
     {/* Landing */}
     <Route path="/" element={<Landing/>}/>
 
-    {/* Common Auth */}
-    <Route path="/login" element={<Login/>}/>
-    <Route path="/register" element={<Register/>}/>
+    {/* Villager Auth */}
+    <Route path="/villager/login" element={<VillagerLogin/>}/>
+    <Route path="/villager/register" element={<VillagerRegister/>}/>
 
-    {/* Role Based Login */}
-    <Route path="/login/villager" element={<VillagerLogin/>}/>
+    {/* NGO Auth */}
+    <Route path="/ngo/login" element={<NgoLogin/>}/>
+    <Route path="/ngo/register" element={<NgoRegister/>}/>
 
-    {/* Dashboard */}
-    <Route path="/dashboard" element={
+
+    {/* Villager Dashboard */}
+    <Route
+     path="/dashboard"
+     element={
       <PrivateRoute>
         <Dashboard/>
       </PrivateRoute>
-    }/>
+     }
+    />
+
+
+    {/* NGO Dashboard */}
+    <Route
+     path="/ngo/dashboard"
+     element={
+      <PrivateRoute>
+        <NgoDashboard/>
+      </PrivateRoute>
+     }
+    />
+
+
+    {/* NGO Recharge Work */}
+    <Route
+     path="/ngo/recharge/:springId"
+     element={
+      <PrivateRoute>
+        <AddRechargeWork/>
+      </PrivateRoute>
+     }
+    />
+
+
+    {/* NGO Works List */}
+    <Route
+     path="/ngo/works"
+     element={
+      <PrivateRoute>
+        <NgoWorks/>
+      </PrivateRoute>
+     }
+    />
+
 
     {/* Spring CRUD */}
-    <Route path="/add-spring" element={
+    <Route
+     path="/add-spring"
+     element={
       <PrivateRoute>
         <AddSpring/>
       </PrivateRoute>
-    }/>
+     }
+    />
 
-    <Route path="/spring/:id" element={
+    <Route
+     path="/spring/:id"
+     element={
       <PrivateRoute>
         <SpringDetail/>
       </PrivateRoute>
-    }/>
+     }
+    />
 
-    <Route path="/add-data/:id" element={
+    <Route
+     path="/add-data/:id"
+     element={
       <PrivateRoute>
         <AddWeeklyData/>
       </PrivateRoute>
-    }/>
+     }
+    />
 
-    <Route path="/edit-spring/:id" element={
+    <Route
+     path="/edit-spring/:id"
+     element={
       <PrivateRoute>
         <EditSpring/>
       </PrivateRoute>
-    }/>
+     }
+    />
 
    </Routes>
   </>

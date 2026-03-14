@@ -23,6 +23,7 @@ router.put("/verify/:id", auth, verification.verifySpring);
 // RECHARGE WORK
 router.post("/recharge", auth, recharge.addRechargeWork);
 router.put("/recharge/:id", auth, recharge.updateWorkStatus);
+router.get("/recharge", auth, recharge.getNgoWorks);
 
 
 // DASHBOARD

@@ -1,22 +1,22 @@
-import {useState} from "react"
+import React from "react"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import API from "../../api/api"
-import {useNavigate,useParams} from "react-router-dom"
 
-function Register(){
+function NgoRegister(){
 
  const navigate = useNavigate()
- const { role } = useParams()
 
  const [form,setForm] = useState({
   name:"",
+  organization:"",
   email:"",
   phone:"",
-  village:"",
   district:"",
   password:""
  })
 
- const change=(e)=>{
+ const change = (e)=>{
   setForm({...form,[e.target.name]:e.target.value})
  }
 
@@ -24,9 +24,19 @@ function Register(){
 
   e.preventDefault()
 
-  await API.post(`/${role}/register`,form)
+  try{
 
-  navigate(`/${role}/login`)
+   await API.post("/ngo/register",form)
+
+   alert("NGO Registered Successfully")
+
+   navigate("/ngo/login")
+
+  }catch(err){
+
+   alert(err.response?.data?.message || "Registration failed")
+
+  }
 
  }
 
@@ -34,14 +44,14 @@ function Register(){
 
   <div>
 
-   <h2>{role} Register</h2>
+   <h2>NGO Register</h2>
 
    <form onSubmit={submit}>
 
     <input name="name" placeholder="Name" onChange={change}/>
+    <input name="organization" placeholder="Organization" onChange={change}/>
     <input name="email" placeholder="Email" onChange={change}/>
     <input name="phone" placeholder="Phone" onChange={change}/>
-    <input name="village" placeholder="Village" onChange={change}/>
     <input name="district" placeholder="District" onChange={change}/>
     <input name="password" type="password" placeholder="Password" onChange={change}/>
 
@@ -55,4 +65,4 @@ function Register(){
 
 }
 
-export default Register
+export default NgoRegister

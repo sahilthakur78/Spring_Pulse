@@ -1,11 +1,10 @@
 import React, { useState } from "react"
+import { useNavigate, Link } from "react-router-dom"
 import API from "../../api/api"
-import { useNavigate, useParams } from "react-router-dom"
 
-function Login(){
+function NgoLogin(){
 
  const navigate = useNavigate()
- const { role } = useParams()
 
  const [email,setEmail] = useState("")
  const [password,setPassword] = useState("")
@@ -14,12 +13,23 @@ function Login(){
 
   e.preventDefault()
 
-  const res = await API.post(`/${role}/login`,{email,password})
+  try{
 
-  localStorage.setItem("token",res.data.token)
-  localStorage.setItem("role",role)
+   const res = await API.post("/ngo/login",{
+    email,
+    password
+   })
 
-  navigate(`/${role}/dashboard`)
+   localStorage.setItem("token",res.data.token)
+   localStorage.setItem("role","ngo")
+
+   navigate("/ngo/dashboard")
+
+  }catch(err){
+
+   alert(err.response?.data?.message || "Login failed")
+
+  }
 
  }
 
@@ -27,7 +37,7 @@ function Login(){
 
   <div>
 
-   <h2>{role} Login</h2>
+   <h2>NGO Login</h2>
 
    <form onSubmit={submit}>
 
@@ -48,10 +58,15 @@ function Login(){
 
    </form>
 
+   <p style={{marginTop:"10px"}}>
+    Don't have an account?{" "}
+    <Link to="/ngo/register">Register here</Link>
+   </p>
+
   </div>
 
  )
 
 }
 
-export default Login
+export default NgoLogin
